@@ -40,7 +40,6 @@ public class Miventana extends JFrame implements ActionListener {
 	private JLabel lblLetra;
 	private JTextPane textLetra;
 	private JTextPane txtContactos;
-	private JButton btnLimpiar;
 	ArrayList<Contactos> ct = new ArrayList<>();
 	List<Contactos> lista = new ArrayList<>();
 
@@ -176,7 +175,7 @@ public class Miventana extends JFrame implements ActionListener {
 			ct.add(contacto);
 			ct.toString();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Ha introducido un telÈfono no v·lido");
+			JOptionPane.showMessageDialog(null, "Ha introducido un tel√©fono no v√°lido");
 
 		}
 		System.out.println(ct);
