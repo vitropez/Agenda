@@ -28,6 +28,10 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import java.util.Collections;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.border.BevelBorder;
 
 public class Miventana extends JFrame implements ActionListener {
 
@@ -38,12 +42,15 @@ public class Miventana extends JFrame implements ActionListener {
 	private JButton btnBuscar;
 	private JButton btnGuardar;
 	private JLabel lblLetra;
-	private JTextPane textLetra;
-	private JTextPane txtContactos;
+	private JTextArea textLetra;
+	private JTextArea txtContactos;
+	private JScrollPane scroll;
+
 	ArrayList<Contactos> ct = new ArrayList<>();
 	List<Contactos> lista = new ArrayList<>();
 
 	public Miventana() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900, 800);
 		setLocationRelativeTo(null);
@@ -65,7 +72,7 @@ public class Miventana extends JFrame implements ActionListener {
 		lblTitulo.setBackground(Color.BLACK);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Segoe Script", Font.BOLD | Font.ITALIC, 25));
-		lblTitulo.setBounds(0, 0, 746, 64);
+		lblTitulo.setBounds(0, 0, 915, 64);
 		lblTitulo.setOpaque(true);
 		panelPrincipal.add(lblTitulo);
 
@@ -106,7 +113,7 @@ public class Miventana extends JFrame implements ActionListener {
 		btnGuardar.setOpaque(true);
 		btnGuardar.setBackground(UIManager.getColor("Button.background"));
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		btnGuardar.setBounds(397, 328, 150, 53);
+		btnGuardar.setBounds(550, 328, 150, 53);
 		btnGuardar.addActionListener(this);
 		panelPrincipal.add(btnGuardar);
 
@@ -114,11 +121,11 @@ public class Miventana extends JFrame implements ActionListener {
 		btnBuscar.setOpaque(true);
 		btnBuscar.setBackground(UIManager.getColor("Button.background"));
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		btnBuscar.setBounds(39, 328, 210, 53);
+		btnBuscar.setBounds(178, 328, 210, 53);
 		btnBuscar.addActionListener(this);
 		panelPrincipal.add(btnBuscar);
 
-		lblLetra = new JLabel("Letra");
+		lblLetra = new JLabel("Iniciales");
 		lblLetra.setOpaque(true);
 		lblLetra.setBackground(Color.LIGHT_GRAY);
 		lblLetra.setToolTipText("");
@@ -126,15 +133,22 @@ public class Miventana extends JFrame implements ActionListener {
 		lblLetra.setBounds(63, 456, 78, 31);
 		panelPrincipal.add(lblLetra);
 
-		textLetra = new JTextPane();
+		textLetra = new JTextArea();
 		textLetra.setBounds(173, 456, 55, 31);
 		panelPrincipal.add(textLetra);
 
-		txtContactos = new JTextPane();
+		txtContactos = new JTextArea();
+		txtContactos.setFont(new Font("High Tower Text", Font.PLAIN, 14));
 		txtContactos.setForeground(Color.BLUE);
-		txtContactos.setBounds(328, 423, 334, 299);
-		panelPrincipal.add(txtContactos);
+		txtContactos.setBounds(329, 414, 334, 299);
 
+		scroll = new JScrollPane(txtContactos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll.setSize(400, 300);
+		scroll.setLocation(300, 425);
+
+		// panelPrincipal.add(txtContactos);
+		panelPrincipal.add(scroll);
 	}
 
 	@Override
@@ -158,9 +172,11 @@ public class Miventana extends JFrame implements ActionListener {
 
 				Collections.sort(lista);
 				txtContactos.setText(lista.toString());
+
 			}
 
 		}
+
 		lista.clear();
 
 	}
@@ -175,11 +191,10 @@ public class Miventana extends JFrame implements ActionListener {
 			ct.add(contacto);
 			ct.toString();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Ha introducido un tel√©fono no v√°lido");
+			JOptionPane.showMessageDialog(null, "Ha introducido un telÈfono no v·lido");
 
 		}
 		System.out.println(ct);
 
 	}
-
 }

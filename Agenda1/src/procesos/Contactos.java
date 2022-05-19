@@ -38,7 +38,7 @@ public class Contactos implements Comparable<Contactos>{
 	
 	@Override
 	public String toString() {
-		return "Contacto " + nombre + ", telefono: " + telefono + ", poblacion: " + poblacion+"\n" ;
+		return  nombre + " , telefono: " + telefono + " , poblacion: " + poblacion+"\n" ;
 	}
 	
 
